@@ -3,7 +3,7 @@ import { ResponseError, ResponseSuccess } from "./models/responseModel"
 /**
  * List of the status of a purchase
  */
-export const Status = ['Em validação', 'Aprovado'];
+export const Status = ["Em validação", "Aprovado"];
 
 /**
  * Returns when an error happens
@@ -34,11 +34,9 @@ export const responseSuccess = <T>( data: T ) => {
     return response;
 } 
 
-export const unmaskDocument = ( value: string ) => value.replace(/\D+/g,'')
-
-export const logger = require('pino')({
+export const logger = require("pino")({
     prettyPrint: {
       levelFirst: true
     },
-    prettifier: require('pino-pretty')
+    prettifier: require("pino-pretty")
 })

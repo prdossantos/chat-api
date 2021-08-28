@@ -1,4 +1,4 @@
-import { Schema, model, ValidatorProps } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 export interface User {
     _id?: string,
@@ -12,12 +12,12 @@ const UserSchema = new Schema<User>({
         required: true
     }
 }, {
-    collection: 'users',
+    collection: "users",
     timestamps: true
 });
 
 
-const UserModel = model<User>('user', UserSchema)
+const UserModel = model<User>("user", UserSchema)
 
 
 export default UserModel;

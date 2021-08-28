@@ -1,7 +1,7 @@
-import express from 'express';
-import { logger, responseError, responseSuccess } from '../helper';
-import { isDBConnected } from '../mongo.connection';
-import MessageModel, { Message } from '../models/MessageModel';
+import express from "express";
+import { logger, responseError, responseSuccess } from "../helper";
+import { isDBConnected } from "../mongo.connection";
+import MessageModel, { Message } from "../models/MessageModel";
 
 
 class MessageController {
@@ -23,7 +23,7 @@ class MessageController {
             return res.status(400).json(responseError(hasErrors.message));
 
         if( !isDBConnected() )
-            return res.status(400).json(responseError('Your DB isn\'t started, but your request is ok!'));
+            return res.status(400).json(responseError("Your DB isn\"t started, but your request is ok!"));
 
         try {
 
@@ -47,7 +47,7 @@ class MessageController {
     async listMessages( req: express.Request, res: express.Response ) {
         
         if( !isDBConnected() )
-            return res.status(400).json(responseError('Your DB isn\'t started, but your request is ok!'));
+            return res.status(400).json(responseError("Your DB isn\"t started, but your request is ok!"));
 
         const messages: any = await MessageModel.aggregate([
             { $lookup: { from: "users", localField: "userId", foreignField: "_id", as: "user" } },

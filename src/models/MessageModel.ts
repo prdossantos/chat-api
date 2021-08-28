@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
 export interface Message {
     _id?: string,
@@ -15,11 +15,11 @@ const MessageSchema = new Schema<Message>({
         required: true
     }
 }, {
-    collection: 'messages',
+    collection: "messages",
     timestamps: true
 });
 
-const MessageModel = model<Message>('message', MessageSchema)
+const MessageModel = model<Message>("message", MessageSchema)
 
 
 export default MessageModel;

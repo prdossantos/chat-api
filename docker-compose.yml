@@ -14,12 +14,13 @@ services:
     networks:
       - chatapi
     links:
-      - mongodb
-  mongodb:
+      - mongo-db
+  mongo-db:
     image: mongo:latest
+    command: mongod --port 27018
     ports:
-      - "27017:27017"
-    container_name: mongodb
+      - "27018:27018"
+    container_name: mongo-db
     volumes:
       - ./data/:/data/db
     networks:
