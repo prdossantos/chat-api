@@ -1,0 +1,250 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Chat API
+  description: 'Desafio – chat.'
+servers:
+  - url: 'http://localhost:8086'
+    description: 'Testando localmente'
+paths:
+  /:
+    get:
+      summary: 'Verifique o status da API'
+      operationId: getVersion
+      tags: 
+        - General
+      responses:
+        '200':
+          description: Quando retornar sucesso será exibida a versão e nome da api.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseSuccess'
+        x-400|500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+
+   /signin:
+    post:
+      summary: 'Autenticação do usuário'
+      description: 'Utilize esta rota para entrar no chat.'
+      operationId: postSignIn
+      tags:
+        - Usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignIn'
+                
+      responses:
+        '200':
+          description: Retorna o usuário com ID para uso no envio de mensagens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseSuccess'
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ResponseSignIn'
+        x-400|500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors' 
+
+  /message:
+    post:
+      summary: 'Enviando uma mensagem'
+      operationId: postRegister
+      tags:
+        - Mensagem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Seller'
+                
+      responses:
+        '200':
+          description: Retorna a mensagem enviada em caso de sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseSuccess'
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Seller'
+        x-400|500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'
+
+
+  /menssages:
+    get:
+      summary: 'Lista de todas as mensagens enviadas'
+      description: "Está rota ncessita de authorização, gere um JWT token em /signin antes."
+      operationId: getMessages
+      tags:
+        - Mensagem
+      security:
+        - bearerAuth: []
+        
+      responses:
+        '200':
+          description: Retorna a lista de mensagens enviadas até o momento.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseSuccess'
+                properties:
+                  data:
+                    type: array
+                    default: []
+        x-400|500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseErrors'  
+
+                
+components:
+
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+      
+  schemas:
+    Seller:
+      type: object
+      required:
+        - name
+        - email
+        - document
+        - password
+      properties:
+        name:
+          type: string
+          description: Você deve inserir nome e sobrenome
+        email:
+          type: string
+        password:
+          type: string
+        document:
+          type: string
+    Purchase:
+      type: object
+      required:
+        - code
+        - value
+        - document
+        - date
+      properties:
+        code:
+          type: string
+        value:
+          type: string
+          format: decimal(10.2)
+          description: O valor deve ser seguir o exemplo 10.00 para R$10,00
+        document:
+          type: string
+        date:
+          type: string   
+          format: date("YYYY-MM-DD")
+          description: "Data no formato YYYY-MM-DD"
+    ResponsePurchase:
+      type: object
+      required:
+        - _id 
+        - code
+        - value
+        - document
+        - date
+        - cashbackPercent
+        - cashbackValue
+      properties:
+        _id:
+          type: string
+        code:
+          type: string
+        value:
+          type: string
+        document:
+          type: string
+        date:
+          type: string
+        cashbackPercent:
+          type: number
+        cashbackValue:
+          type: number  
+          
+    SignIn:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+  
+    ResponseSignIn:
+      type: object
+      required:
+        - accessToken
+      properties:
+        accessToken:
+          type: string
+ 
+    ResponseSellerValid:
+      type: object
+      required:
+        - isValid
+      properties:
+        isValid:
+          type: boolean 
+          
+    ResponseTotalCashback:
+      type: object
+      required:
+        - total
+      properties:
+        isValid:
+          type: number           
+          
+    ResponseSuccess:
+      type: object
+      required:
+        - data
+        - success
+      properties:
+        data:
+          nullable: true
+          oneOf:
+            - type: object
+            - type: array
+        success:
+          description: 'Retorna "true" para as requisições de sucesso.'
+          type: boolean
+            
+    ResponseErrors:
+      type: object
+      required:
+        - error
+        - success
+      properties:
+        error:
+          type: string
+        success:
+          description: 'Retorna "false" para as requisições com erro.'
+          default: false
+          type: boolean

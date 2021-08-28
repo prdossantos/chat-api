@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  chat-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: bash -c "npm install; nodemon index.ts --color=always"
+    ports:
+      - "8086:8086"
+      - "4343:4343"
+    volumes:
+      - ./:/usr/src/app
+    container_name: chat-api
+    networks:
+      - chatapi
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    command: mongod --port 27020
+    ports:
+      - "27020:27020"
+    container_name: mongodb
+    volumes:
+      - ./data/:/data/db
+    networks:
+      - chatapi
+networks:
+    chatapi:
+        driver: bridge
