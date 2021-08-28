@@ -15,7 +15,7 @@ Desafio chat.
 3. Você precisa de uma conexão com o MongoDB
 4. Você pode alterar a conexão de acesso do MongoDB no arquivo ```.env```.
 
-*Por padrão o projeto irá rodar na porta: 8080( [http://localhost:8086](http://localhost:8086) ), isso também é uma variável no ```.env```.
+*Por padrão o projeto irá rodar na porta: 8086( [http://localhost:8086](http://localhost:8086) ), isso também é uma variável no ```.env```.
 
 ## Facilitando a vida
  - O arquivo ```.env``` foi enviado para facilitar a vida da pessoa que irá testar, em um ambiente real isso é removido do repositório.
