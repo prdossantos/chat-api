@@ -7,7 +7,7 @@ services:
     command: bash -c "npm install; nodemon index.ts --color=always"
     ports:
       - "8086:8086"
-      - "4343:4343"
+      - "4000:4000"
     volumes:
       - ./:/usr/src/app
     container_name: chat-api
@@ -17,9 +17,8 @@ services:
       - mongodb
   mongodb:
     image: mongo:latest
-    command: mongod --port 27020
     ports:
-      - "27020:27020"
+      - "27017:27017"
     container_name: mongodb
     volumes:
       - ./data/:/data/db

@@ -19,16 +19,18 @@ Desafio chat.
 
 ## Facilitando a vida
  - O arquivo ```.env``` foi enviado para facilitar a vida da pessoa que irá testar, em um ambiente real isso é removido do repositório.
- - O server do Apollo GraphQL, está contido nest projeto utilizando a porta: **4343**
+ - O server do Apollo GraphQL, está contido nest projeto utilizando a porta: **4000**
 
 ### Use o docker ;)
 Caso você tenha o docker e docker-compose instalados, siga os comandos:
 1. ```docker-compose build```
 2. ```docker-compose up```, isso pode demorar um pouco dependendo do seu PC.
 Aguarde as mensaegens: 
- * ```nodejs-api    | app listening on port 8086``` 
- * ```nodejs-api    | Server graphql ready at http://localhost:4000``` 
- * ```nodejs-api    | MongoDB connected``` 
+ * ```chat-api    | app listening on port 8086``` 
+ * ```chat-api    | Server graphql ready at http://localhost:4000``` 
+ * ```chat-api    | MongoDB connected``` 
+
+ *O MongoDB utiliza a porta **27017**, caso esteja em uso no seu PC é necessário parar o serviço.
 
 *Se quiser alterar as portas de conexão utilizando docker, faça isso no arquivo ```docker-compose.yml```
 

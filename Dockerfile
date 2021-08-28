@@ -8,6 +8,6 @@ COPY ./package.json /usr/src/app/package.json
 RUN npm install -g  
 
 EXPOSE 8086
-EXPOSE 4343 
+EXPOSE 4000 
 
 CMD ["npm", "start"] 
