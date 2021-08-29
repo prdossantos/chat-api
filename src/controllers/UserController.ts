@@ -16,7 +16,7 @@ class UserController {
         
         const { name } = req.body;
         let user: any = null;
-        const hasErrors = (new UserModel({name: name})).validateSync(["name"]);
+        const hasErrors = (new UserModel({name})).validateSync(["name"]);
 
         if( hasErrors ) {
             return res.status(400).json(responseError(hasErrors.message));
@@ -43,4 +43,4 @@ class UserController {
 }
 
 
-export default new UserController()
+export default new UserController();

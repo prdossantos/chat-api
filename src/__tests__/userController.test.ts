@@ -24,7 +24,7 @@ describe("test userController::signIn", () => {
         expect(res.json).toHaveBeenCalledWith(
             //@ts-ignore
             expect.toBeInJson("error", "user validation failed")
-        )
+        );
     });
 
 });

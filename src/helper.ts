@@ -18,7 +18,7 @@ export const responseError = ( message: string ) => {
     };
 
     return response;
-} 
+};
 
 /**
  * Returns when a request is successful
@@ -32,7 +32,7 @@ export const responseSuccess = <T>( data: T ) => {
     };
 
     return response;
-} 
+}; 
 
 export const logger = require("pino")({
     prettyPrint: {

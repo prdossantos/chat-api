@@ -8,7 +8,7 @@ import { logger, responseError } from "./src/helper";
 import { ApolloServer, gql } from "apollo-server";
 import typeDefs from "./src/typeDefs";
 import resolvers from "./src/resolvers";
-const pino = require("pino-http")()
+const pino = require("pino-http")();
 
 require("dotenv").config({
     path: ".env",
@@ -28,7 +28,7 @@ app.listen(port, () => {
 
     mdbConnection().then(( connection ) => {
         logger.info("MongoDB connected");
-    }).catch(e => {
+    }).catch( ( e ) => {
         logger.error(`Mongodb connection error: ${e.message}`);
     })
 })
