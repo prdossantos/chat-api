@@ -1,3 +1,6 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e469354d3c474f638f2d1171637c4e12)](https://www.codacy.com/gh/prdossantos/chat-api/dashboard?utm_source=github.com&utm_medium=referral&utm_content=prdossantos/chat-api&utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/e469354d3c474f638f2d1171637c4e12)](https://www.codacy.com/gh/prdossantos/chat-api/dashboard?utm_source=github.com&utm_medium=referral&utm_content=prdossantos/chat-api&utm_campaign=Badge_Coverage)
+
 # Chat
 
 Desafio chat. 
@@ -27,8 +30,8 @@ Desafio chat.
 ### Use o docker ;)
 
 Caso você tenha o docker e docker-compose instalados, siga os comandos:
-1\.  `docker-compose build`
-2\.  `docker-compose up`, isso pode demorar um pouco dependendo do seu PC.
+1.  `docker-compose build`
+2.  `docker-compose up`, isso pode demorar um pouco dependendo do seu PC.
 Aguarde as mensaegens: 
 
 -   `chat-api    | app listening on port 8086` 
