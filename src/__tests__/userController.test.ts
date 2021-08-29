@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import UserController from "../controllers/userController";
 import UserModel from "../models/UserModel";
 import { mockRequest, mockResponse, expects } from "../../jest.utils";
-const mockingoose = require("mockingoose")
+const mockingoose = require("mockingoose");
 
-jest.mock("../mongo.connection", () =>( { isDBConnected: jest.fn(() => () => true) } ))
+jest.mock("../mongo.connection", () => ( { isDBConnected: jest.fn(() => () => true) } ));
 
 expect.extend(expects);
 
@@ -15,7 +15,7 @@ describe("test userController::signIn", () => {
 
         const req = mockRequest();
         const res = mockResponse();
-        req.body = {}
+        req.body = {};
 
         mockingoose(UserModel).toReturn({}, "findOne");
 

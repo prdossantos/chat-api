@@ -1,4 +1,4 @@
-import { ResponseError, ResponseSuccess } from "./models/responseModel"
+import { ResponseError, ResponseSuccess } from "./models/responseModel";
 
 /**
  * List of the status of a purchase
@@ -15,7 +15,7 @@ export const responseError = ( message: string ) => {
     const response: ResponseError = {
         success: false,
         error: message
-    }
+    };
 
     return response;
 } 
@@ -29,7 +29,7 @@ export const responseSuccess = <T>( data: T ) => {
     const response: ResponseSuccess<T> = {
         success: true,
         data
-    }
+    };
 
     return response;
 } 
@@ -39,4 +39,4 @@ export const logger = require("pino")({
       levelFirst: true
     },
     prettifier: require("pino-pretty")
-})
+});

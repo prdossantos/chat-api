@@ -1,7 +1,7 @@
 import MessageModel from "../models/MessageModel";
 import { expects } from "../../jest.utils";
 
-jest.mock("../mongo.connection", () =>( { isDBConnected: jest.fn(() => () => true) } ))
+jest.mock("../mongo.connection", () => ( { isDBConnected: jest.fn(() => () => true) } ));
 
 expect.extend(expects);
 

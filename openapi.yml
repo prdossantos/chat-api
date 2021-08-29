@@ -26,7 +26,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ResponseErrors'
 
-   /signin:
+  /signin:
     post:
       summary: 'Autenticação do usuário'
       description: 'Utilize esta rota para entrar no chat.'
@@ -38,7 +38,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignIn'
+              $ref: '#/components/schemas/User'
                 
       responses:
         '200':
@@ -67,7 +67,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Seller'
+              $ref: '#/components/schemas/Message'
                 
       responses:
         '200':
@@ -78,7 +78,7 @@ paths:
                 $ref: '#/components/schemas/ResponseSuccess'
                 properties:
                   data:
-                    $ref: '#/components/schemas/Seller'
+                    $ref: '#/components/schemas/ResponseMessage'
         x-400|500:
           content:
             application/json:
@@ -89,7 +89,6 @@ paths:
   /menssages:
     get:
       summary: 'Lista de todas as mensagens enviadas'
-      description: "Está rota ncessita de authorização, gere um JWT token em /signin antes."
       operationId: getMessages
       tags:
         - Mensagem
@@ -123,103 +122,50 @@ components:
       bearerFormat: JWT 
       
   schemas:
-    Seller:
+    User:
       type: object
       required:
         - name
-        - email
-        - document
-        - password
       properties:
         name:
           type: string
-          description: Você deve inserir nome e sobrenome
-        email:
-          type: string
-        password:
-          type: string
-        document:
-          type: string
-    Purchase:
+    Message:
       type: object
       required:
-        - code
-        - value
-        - document
-        - date
+        - message
+        - userId
       properties:
-        code:
+        message:
           type: string
-        value:
+        userId:
           type: string
-          format: decimal(10.2)
-          description: O valor deve ser seguir o exemplo 10.00 para R$10,00
-        document:
-          type: string
-        date:
-          type: string   
-          format: date("YYYY-MM-DD")
-          description: "Data no formato YYYY-MM-DD"
-    ResponsePurchase:
-      type: object
-      required:
-        - _id 
-        - code
-        - value
-        - document
-        - date
-        - cashbackPercent
-        - cashbackValue
-      properties:
-        _id:
-          type: string
-        code:
-          type: string
-        value:
-          type: string
-        document:
-          type: string
-        date:
-          type: string
-        cashbackPercent:
-          type: number
-        cashbackValue:
-          type: number  
-          
-    SignIn:
-      type: object
-      required:
-        - email
-        - password
-      properties:
-        email:
-          type: string
-        password:
-          type: string
+          description: "Obtido no método signIn"
   
     ResponseSignIn:
       type: object
       required:
-        - accessToken
+        - _id
+        - name
       properties:
-        accessToken:
+        name:
+          type: string
+        _id:
           type: string
  
-    ResponseSellerValid:
+    ResponseMessage:
       type: object
       required:
-        - isValid
+        - _id
+        - message
+        - userId
       properties:
-        isValid:
-          type: boolean 
+        _id:
+          type: string
+        message:
+          type: string
+        userId:
+          type: string
           
-    ResponseTotalCashback:
-      type: object
-      required:
-        - total
-      properties:
-        isValid:
-          type: number           
           
     ResponseSuccess:
       type: object

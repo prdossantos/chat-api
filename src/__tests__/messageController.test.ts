@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import MessageController from "../controllers/messageController";
 import MessageModel from "../models/MessageModel";
 import { mockRequest, mockResponse, expects } from "../../jest.utils";
-const mockingoose = require("mockingoose")
+const mockingoose = require("mockingoose");
 
-jest.mock("../mongo.connection", () =>( { isDBConnected: jest.fn(() => () => true) } ))
+jest.mock("../mongo.connection", () => ( { isDBConnected: jest.fn(() => () => true) } ));
 
 expect.extend(expects);
 
@@ -13,7 +13,7 @@ describe("test messageController::listMessages", () => {
     it("case 1. list all messages", async () => {
 
         const req = mockRequest();
-        const res = mockResponse()
+        const res = mockResponse();
 
         mockingoose(MessageModel).toReturn([], "find");
 
@@ -24,7 +24,7 @@ describe("test messageController::listMessages", () => {
                 success: true,
                 data: []
             }),
-        )
+        );
     });
 });
 
@@ -33,8 +33,8 @@ describe("test MessageController::create", () => {
     it("case 1. should not be create a new message", async () => {
 
         const req = mockRequest();
-        const res = mockResponse()
-        req.body = {}
+        const res = mockResponse();
+        req.body = {};
 
         mockingoose(MessageModel).toReturn([], "save");
 

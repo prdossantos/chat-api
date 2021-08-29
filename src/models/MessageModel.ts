@@ -19,7 +19,7 @@ const MessageSchema = new Schema<Message>({
     timestamps: true
 });
 
-const MessageModel = model<Message>("message", MessageSchema)
+const MessageModel = model<Message>("message", MessageSchema);
 
 
 export default MessageModel;

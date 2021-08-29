@@ -14,29 +14,31 @@ class UserController {
      */
       async signIn( req: express.Request, res: express.Response ) {
         
-        const { name } = req.body
+        const { name } = req.body;
         let user: any = null;
         const hasErrors = (new UserModel({name: name})).validateSync(["name"]);
 
-        if( hasErrors )        
+        if( hasErrors ) {
             return res.status(400).json(responseError(hasErrors.message));
+        }
 
-        if( !isDBConnected() )
+        if( !isDBConnected() ) {
             return res.status(400).json(responseError("Your DB isn\"t started, but your request is ok!"));
+        }
 
         try {   
             user = await UserModel.findOne({name}, "name");
             
             if( !user ) {
-                user = await UserModel.create({name})
+                user = await UserModel.create({name});
             }
 
         } catch( e ) {
-            logger.error(e.message)
+            logger.error(e.message);
             return res.status(400).json(responseError(e.message));
         }
 
-        return res.json(responseSuccess<any>(user))
+        return res.json(responseSuccess<any>(user));
     }
 }
 

@@ -3,4 +3,4 @@ import { UserTypeDefs } from "./UserTypeDef";
 
 const typeDefs = [UserTypeDefs, MessageTypeDefs];
 
-export default typeDefs
+export default typeDefs;
